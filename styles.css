@@ -1,0 +1,173 @@
+html,
+body {
+  font-size: 15px;
+  color: rgba(0, 0, 0, .86);
+}
+
+header {
+  background-color: #D32F2F;
+  color: #fff;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, .15);
+}
+
+#header-main{
+  height: 64px;
+  width: 320px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 .5rem 0 1rem;
+}
+
+header h1 {
+  width: auto;
+  margin: 0;
+  padding: 0;
+  height: 3rem;
+  line-height: 3rem;
+  font-weight: normal;
+  font-size: 1.5rem;
+}
+
+header .fa {
+  font-size: 1.5rem;
+  display: block;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+
+header .fa:hover {
+  background-color: rgba(255, 255, 255, .2);
+}
+
+main {
+  position: relative;
+  width: 320px;
+  margin: 0 auto;
+}
+
+main #equation {
+  font-size: 4rem;
+  font-weight: 900;
+  text-align: center;
+  padding: 2rem 0;
+  margin-bottom: 2rem;
+  color: #004D40;
+}
+
+main #info {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+main #info #current-no {
+  color: #1E88E5;
+}
+
+main #info #score {
+  color: #E53935;
+  font-weight: 900;
+}
+
+main #timer-container {
+  font-size: 1.5rem;
+  font-weight: 900;
+  text-align: center;
+  margin: 1rem 0;
+  border: 1px solid rgba(0, 0, 0, .4);
+  height: 8px;
+  border-radius: 4px;
+  background-color: #E53935;
+  overflow: hidden;
+}
+
+main #timer-container #timer {
+  height: 100%;
+  width: 100%;
+  float: right;
+  background-color: #fff;
+}
+
+main #timer-container #timer.progress{
+  transition: width 1s linear;
+}
+
+main #timer-container #timer{
+  transition: none;
+}
+
+main .results {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+main .results .result {
+  width: 110px;
+  height: 110px;
+  line-height: 110px;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 900;
+  background-color: #B2DFDB;
+  color: #004D40;
+  margin: 0 .5rem;
+  cursor: pointer;
+  position: relative;
+}
+
+main .results .result .check {
+  position: absolute;
+  display: none;
+  right: 30px;
+  bottom: 70px;
+  width: 10px;
+  height: 10px;
+  font-size: 2.2rem;
+  z-index: 10;
+  color: #fff;
+}
+
+main .results.answered .result {
+  cursor: default;
+}
+
+main .results.answered .result.error {
+  background-color: #C62828;
+  color: #fff;
+}
+
+main .results.answered .result.correct {
+  background-color: #2E7D32;
+  color: #fff;
+}
+
+main .results .result:hover {
+  box-shadow: 0 0 6px 3px #004D40;
+}
+
+main .results.answered .result:hover {
+  box-shadow: none;
+}
+
+main .results.answered .result.error.clicked .check-error {
+  display: block;
+}
+
+main .results.answered .result.correct.clicked .check-correct {
+  display: block;
+}
+
+#currentScore {
+  color: #C62828;
+}
+
+#answerCount {
+  color: #1565C0;
+}
