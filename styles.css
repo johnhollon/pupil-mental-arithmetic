@@ -171,3 +171,15 @@ main .results.answered .result.correct.clicked .check-correct {
 #answerCount {
   color: #1565C0;
 }
+
+.icon{
+  display: inline-block;
+  width: 2em;
+  text-align: center;
+}
+label.col-form-label{
+  font-size: 12px;
+}
+.form-control, .form-select, .form-control-plaintext{
+  font-size: 12px;
+}

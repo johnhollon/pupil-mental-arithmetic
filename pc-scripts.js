@@ -1,161 +1,14 @@
-/**
- * 试卷配置信息
- */
-var configs = {
-  fullMarks: 100, //总分
-  counts: 100, // 默认100道题
-  min: 0, // 数字最小值
-  max: 20, // 数字最大值
-  hasMinis: true, // 是否包含减法
-  hasAdd: true, // 是否包含加法
-  scorePerEquation: 1, // 每道题分值
-  secondsPerEquation: 10, // 每个体的解答时间（秒）
-  equations: [], // 所有题目
-  errors: [], // 错题
-  currentEquationIndex: -1, // 当前题目索引号。
-  isErrorOnly: false, // 是否只做错题
-  currentErrorEquationIndex: -1, // 当前错题索引号。
-  currentScore: 0, // 当前得分
-  timerIntervalId: 0, // 倒计时定时器ID。
-  answerCount: 0, // 答题次数。
-};
-/**
- * 定义一道题目
- */
-var equation = {
-  equation: '2+3=?', // 题目字符串
-  isError: false, // 是否是答错的题
-  answer: '5', // 正确结果
-  answers: [ // 定义可选答案
-    {
-      answer: '3',
-      type: 'error'
-    },
-    {
-      answer: '4',
-      type: 'error'
-    },
-    {
-      answer: '5',
-      type: 'correct'
-    },
-  ]
-};
-var configModel = false;
+
 /**
  * 显示试卷配置信息窗口
  */
 function showConfig() {
-  if(!configModel){
-    configModel = new bootstrap.Modal(document.getElementById('configModal'));
+  if (!configModal) {
+    configModal = new bootstrap.Modal(document.getElementById('configModal'));
   }
-  configModel.show();
+  configModal.show();
 }
-/**
- * 生成加法试题
- */
-function generateAddEquation() {
-  let sum = Math.floor(Math.random() * (configs.max + 1));
-  let addon1 = Math.floor(Math.random() * (configs.max + 1));
 
-  do {
-    addon1 = Math.floor(Math.random() * (configs.max + 1));
-  } while (addon1 > sum);
-
-  let addon2 = sum - addon1;
-  let answers = [];
-
-  for (let index = 0; index < 7; index++) {
-    let sumError = Math.floor(Math.random() * (configs.max + 1));
-    do {
-      sumError = Math.floor(Math.random() * (configs.max + 1));
-    } while (sumError == sum);
-    answers.push({
-      answer: sumError,
-      type: 'error'
-    });
-  }
-
-  let randomIndex = Math.floor(Math.random() * 4);
-  answers.splice(randomIndex, 0, {
-    answer: sum,
-    type: 'correct'
-  });
-  configs.equations.push(
-    {
-      equation: `${addon1} + ${addon2}`, // 题目字符串
-      isError: false, // 是否是答错的题
-      answer: sum, // 正确结果
-      answers: answers, // 所有可选答案
-    }
-  );
-}
-/**
- * 生成减法试题
- */
-function generateMinisEquation() {
-  let minuend = Math.floor(Math.random() * (configs.max + 1));
-
-  do {
-    minuend = Math.floor(Math.random() * (configs.max + 1));
-  } while (minuend < Math.max(Math.abs(configs.min), 1));
-
-  let subtrahend = Math.floor(Math.random() * (configs.max + 1));
-
-  do {
-    subtrahend = Math.floor(Math.random() * (configs.max + 1));
-  } while (subtrahend > minuend);
-
-  let result = minuend - subtrahend;
-
-  let answers = [];
-
-  for (let index = 0; index < 7; index++) {
-    let resultError = Math.floor(Math.random() * (minuend + 1));
-    do {
-      resultError = Math.floor(Math.random() * (minuend + 1));
-    } while (resultError == result);
-    answers.push({
-      answer: resultError,
-      type: 'error'
-    });
-  }
-
-  let randomIndex = Math.floor(Math.random() * 4);
-  answers.splice(randomIndex, 0, {
-    answer: result,
-    type: 'correct'
-  });
-  configs.equations.push(
-    {
-      equation: `${minuend} - ${subtrahend}`, // 题目字符串
-      isError: false, // 是否是答错的题
-      answer: result, // 正确结果
-      answers: answers, // 所有可选答案
-    }
-  );
-}
-/**
- * 生成题目。
- */
-function generateEquations() {
-  for (let count = 0; count < configs.counts; count++) {
-    if (configs.hasAdd && configs.hasMinis) {
-      let type = Math.floor(Math.random() * 2);
-      if (type < 1) {
-        generateAddEquation();
-      } else {
-        generateMinisEquation();
-      }
-    } else if (configs.hasAdd) {
-      generateAddEquation();
-    } else if (configs.hasMinis) {
-      generateMinisEquation();
-    } else {
-      return;
-    }
-  }
-}
 /**
  * 停止倒计时
  */
@@ -193,7 +46,6 @@ function resetAll() {
   stopTimer();
   configs.scorePerEquation = configs.fullMarks / configs.counts;
   configs.errors = [];
-  configs.equations = [];
   configs.isErrorOnly = false;
   configs.currentEquationIndex = -1;
   configs.currentErrorEquationIndex = -1;
@@ -321,8 +173,13 @@ function setAnswer(answer) {
   }, 1000);
 }
 
+
+
 // 页面加载完成
 $(function () {
+  
+  createConfigMadal(true);
+
   resetAll();
   $(".result").click(function () {
     let $this = $(this);
@@ -337,16 +194,9 @@ $(function () {
     showConfig();
   });
   $("#config-comfirm-btn").click(() => {
-    configs.max = parseInt($("#max").val());
-    configs.secondsPerEquation = parseInt($("#secondsPerEquation").val());
-    configs.hasAdd = $("#hasAdd").val();
-    configs.hasAdd = configs.hasAdd === "true";
-    configs.hasMinis = $("#hasMinis").val();
-    configs.hasMinis = configs.hasMinis === "true";
-    configs.fullMarks = parseInt($("#fullMarks").val());
-    configs.counts = parseInt($("#counts").val());
-    if(configs.max > 0 && (configs.hasAdd || configs.hasMinis)){
-      configModel.hide();
+    resetConfigModel();
+    if (configs.max > 0 && (configs.hasAdd || configs.hasMinis)) {
+      configModal.hide();
       resetAll();
     }
   });

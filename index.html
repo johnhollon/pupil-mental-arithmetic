@@ -5,155 +5,52 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>小学口算练习</title>
+  <title>陈则名一年级（上）口算练习</title>
   <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" type="text/javascript"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
   <link href="styles.css" rel="stylesheet" crossorigin="anonymous">
-  <script src="scritps.js" type="text/javascript"></script>
 </head>
 
 <body>
   <header>
     <section id="header-main">
-      <h1>小学口算练习</h1>
-      <section id="config-btn">
-        <i class="fa fa-cog"></i>
-      </section>
+      <h1>口算练习（一）</h1>
     </section>
   </header>
+
   <main>
-    <section id="info">
-      <section id="counts-container">
-        题号
-        <span id="current-no">1</span>/<span id="total-no">100</span>
-      </section>
-      <section id="score-container">
-        得分：<span id="score">0</span>
-      </section>
-    </section>
 
-    <section id="timer-container">
-      <div id="timer"></div>
-    </section>
-
-
-    <section id="equation">100+100=?</section>
-
-    <section class="results answered">
-      <div class="result error">
-        <span>999</span>
-        <section class="check check-correct">
-          <i class="fa fa-check"></i>
-        </section>
-        <section class="check check-error">
-          <i class="fa fa-times"></i>
-        </section>
-      </div>
-      <div class="result error">
-        <span>5</span>
-        <section class="check check-correct">
-          <i class="fa fa-check"></i>
-        </section>
-        <section class="check check-error">
-          <i class="fa fa-times"></i>
-        </section>
-      </div>
-    </section>
-    <section class="results">
-      <div class="result">
-        <span>5</span>
-        <section class="check check-correct">
-          <i class="fa fa-check"></i>
-        </section>
-        <section class="check check-error">
-          <i class="fa fa-times"></i>
-        </section>
-      </div>
-      <div class="result">
-        <span>5</span>
-        <section class="check check-correct">
-          <i class="fa fa-check"></i>
-        </section>
-        <section class="check check-error">
-          <i class="fa fa-times"></i>
-        </section>
-      </div>
-    </section>
-  </main>
-
-  <div class="modal fade" id="configModal" tabindex="-1" aria-labelledby="configModalLabel" aria-hidden="true" data-bs-backdrop="static"
-       data-bs-keyboard="false">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="configModalLabel">设置</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="mb-1 row">
-            <label for="max" class="col-4 col-form-label">最大数字：</label>
-            <div class="col-8">
-              <input type="number" class="form-control" id="max" value="20">
-            </div>
-          </div>
-          <div class="mb-1 row">
-            <label for="secondsPerEquation" class="col-4 col-form-label">每题秒数：</label>
-            <div class="col-8">
-              <input type="number" class="form-control" id="secondsPerEquation" value="10">
-            </div>
-          </div>
-          <div class="mb-1 row">
-            <label for="hasAdd" class="col-4 col-form-label">加法：</label>
-            <div class="col-8">
-              <select class="form-select" id="hasAdd">
-                <option selected value=true>试题中包含</option>
-                <option value=false>试题中不含</option>
-              </select>
-            </div>
-          </div>
-          <div class="mb-1 row">
-            <label for="hasMinis" class="col-4 col-form-label">减法：</label>
-            <div class="col-8">
-              <select class="form-select" id="hasMinis">
-                <option selected value=true>试题中包含</option>
-                <option value=false>试题中不含</option>
-              </select>
-            </div>
-          </div>
-          <div class="mb-1 row">
-            <label for="fullMarks" class="col-4 col-form-label">设置总分：</label>
-            <div class="col-8">
-              <input type="number" class="form-control" id="fullMarks" value="100">
-            </div>
-          </div>
-          <div class="mb-1 row">
-            <label for="currentScore" class="col-4 col-form-label">当前得分：</label>
-            <div class="col-8">
-              <input type="number" readonly class="form-control-plaintext" id="currentScore" value="10">
-            </div>
-          </div>
-          <div class="mb-1 row">
-            <label for="counts" class="col-4 col-form-label">题目数量：</label>
-            <div class="col-8">
-              <input type="number" class="form-control" id="counts" value="100">
-            </div>
-          </div>
-          <div class="mb-1 row">
-            <label for="answerCount" class="col-4 col-form-label">答题次数：</label>
-            <div class="col-8">
-              <input type="text" readonly class="form-control-plaintext" id="answerCount" value="10">
-            </div>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
-          <button type="button" id="config-comfirm-btn" class="btn btn-primary">确定</button>
-        </div>
-      </div>
+    <div class="list-group mt-5">
+      <a href="print.html" class="list-group-item list-group-item-action" aria-current="true"><i class="fa fa-print icon"></i>打印版</a>
+      <a href="pc.html" class="list-group-item list-group-item-action" aria-current="true"><i class="fa fa-mobile icon"></i>手机或电脑</a>
     </div>
-  </div>
+
+    <h2 class="mt-3 text-center">使用说明</h2>
+
+    <p>点击上面的按钮进入“打印版”或“手机电脑版”口算练习（目前只支持两个数的加减法，不支持连加、连减、加减混合）。</p>
+    <ul>
+      <li><code>打印版</code>：家长可以下载PDF，自行打印让孩子在纸上做题（<code>如果使用微信，请务必选择在浏览器中打开，否则不能生成并下载pdf文件</code>）。使用打印版让还在在纸上练习，能减少孩子用手机或电脑。</li>
+      <li><code>手机或电脑</code>：可以让孩子在手机或电脑上做题，有倒计时、评分、错题重算功能。打印不方便的，或者想提高计算速度的，可以常识使用此版本。</li>
+    </ul>
+    <p>进入口算练习页面后，顶部红色导航栏有“<code><i class="fa fa-cog"></i></code>”按钮，点击此按钮，可以对题目进行设置。可设置项目如下：</p>
+    <ul>
+      <li><code>总分</code>：满分的分数（仅用于手机或电脑版）。</li>
+      <li><code>当前得分</code>：当前得分（仅用于手机或电脑版）。</li>
+      <li><code>每题秒数</code>：每道题倒计时的秒数（仅用于手机或电脑版）。</li>
+      <li><code>答题次数</code>：本次练习总共选择了多少次答案（仅用于手机或电脑版）。</li>
+      <li><code>题目数量</code>：练习一共多少道题。</li>
+      <li><code>和或被减数最大值(含)</code>：若是加法题目，则和不大于此值；若是减法题目，则被减数不大于此值。</li>
+      <li><code>和或被减数最小值(含)</code>：若是加法题目，则和不小于此值；若是减法题目，则被减数不小于此值。</li>
+      <li><code>某个加数或被减数最小值(含)</code>：若是加法题目，则其中一个加数不小于此值（另一个加数不受此设置项控制）；若是减法题目，则减数不小于此值。</li>
+      <li><code>包含加法</code>：试题中是否包含加法。</li>
+      <li><code>包含减法</code>：试题中是否包含减法。</li>
+      <li><code>是否有 0</code>：加数、被减数、减数是否可以是“0”。</li>
+    </ul>
+    <h2 class="mt-3 text-center">关于手机电脑版</h2>
+    <p>孩子从头到尾答题完成后不会立即结束答题，网页会将错误题逐个列出让孩子继续作答，直至孩子将所有错题都选择了正确答案。这时，网页会弹出设置界面。在设置界面中，当前得分必然是满分，家长可以通过答题次数判断孩子的错误率：例如题目数量为100道题，答题次数为110，则说明孩子错了10次。</p>
+  </main>
 </body>
 
 </html>
